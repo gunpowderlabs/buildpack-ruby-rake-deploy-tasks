@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+
+build_dir=$1
+cd $build_dir
+
+if (test -f Rakefile && bundle exec rake -T | grep db:migrate > /dev/null) then
+  echo "Project has task rake db:migrate"
+else
+  echo "no" && exit 1
+fi
