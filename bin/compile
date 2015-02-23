@@ -7,5 +7,6 @@ set -o pipefail   # don't ignore exit codes when piping output
 build_dir=$1
 cache_dir=$2
 env_dir=$3
+db_url=`cat $env_dir/DATABASE_URL`
 
-cd $build_dir && bundle exec rake db:migrate
+cd $build_dir && bundle exec rake db:migrate DATABASE_URL=$db_url
