@@ -17,6 +17,4 @@ if [ -d "$env_dir" ]; then
   done
 fi
 
-env
-
 cd $build_dir && bundle exec rake db:migrate
