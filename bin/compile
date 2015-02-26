@@ -8,5 +8,6 @@ build_dir=$1
 cache_dir=$2
 env_dir=$3
 db_url=`cat $env_dir/DATABASE_URL`
+rails_env=`cat $env_dir/RAILS_ENV`
 
-cd $build_dir && bundle exec rake db:migrate DATABASE_URL=$db_url
+cd $build_dir && bundle exec rake db:migrate DATABASE_URL=$db_url RAILS_ENV=$rails_env
