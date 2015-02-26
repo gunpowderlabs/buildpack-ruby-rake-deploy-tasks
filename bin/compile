@@ -3,11 +3,23 @@
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 
+export_env_dir() {
+  env_dir=$3
+  blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
+  if [ -d "$env_dir" ]; then
+    for e in $(ls $env_dir); do
+      echo "$e" | grep -qvE "$blacklist_regex" &&
+      export "$e=$(cat $env_dir/$e)"
+      :
+    done
+  fi
+}
+
 # Configure directories
 build_dir=$1
 cache_dir=$2
 env_dir=$3
-db_url=`cat $env_dir/DATABASE_URL`
-rails_env=`cat $env_dir/RAILS_ENV`
 
-cd $build_dir && bundle exec rake db:migrate DATABASE_URL=$db_url RAILS_ENV=$rails_env
+export_env_dir
+
+cd $build_dir && bundle exec rake db:migrate
