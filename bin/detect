@@ -4,8 +4,15 @@
 build_dir=$1
 cd $build_dir
 
-if (test -f Rakefile && bundle exec rake -T | grep db:migrate > /dev/null) then
-  echo "Project has task rake db:migrate"
+if (test -f Rakefile) then
+  if (bundle exec rake -T | grep db:migrate > /dev/null) then
+    echo "Project has task rake db:migrate"
+    exit 0
+  else
+    echo "FAIL: No db:migrate task detected!" 
+    exit 1
+  fi
 else
-  echo "no" && exit 1
+  echo "FAIL: No Rakefile detected!" 
+  exit 1
 fi
