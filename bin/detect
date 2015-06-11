@@ -2,7 +2,7 @@
 # bin/detect <build-dir>
 
 if (test -f $1/Rakefile) then
-  echo "db:migrate"
+  echo "Rake"
   exit 0
 else
   echo "no"
