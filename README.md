@@ -11,7 +11,10 @@ heroku buildpacks:add https://github.com/gunpowderlabs/buildpack-ruby-rake-deplo
 ```
 
 Configure DEPLOY_TASKS environment variable with the tasks you want to run:
+
+```
 heroku config:set DEPLOY_TASKS='db:migrate cache:clear'
+```
 
 # License
 
