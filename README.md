@@ -1,4 +1,4 @@
-# Heroku buildpack for running rake db:migrate on deploy
+# Heroku buildpack for running arbitrary rake tasks on deploy
 
 This buildpack is intended for use after the regular [ruby-buildpack].
 
