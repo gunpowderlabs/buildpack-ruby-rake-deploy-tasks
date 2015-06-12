@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+[ -z "$DEPLOY_TASKS" ] && { echo "DEPLOY_TASKS has not been set"; exit 1; }
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 
