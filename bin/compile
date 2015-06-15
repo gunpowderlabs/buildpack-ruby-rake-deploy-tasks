@@ -17,4 +17,5 @@ if [ -d "$env_dir" ]; then
   done
 fi
 
+[ -z "$DEPLOY_TASKS" ] && { echo "DEPLOY_TASKS has not been set"; exit 1; }
 cd $build_dir && bundle exec rake $DEPLOY_TASKS
