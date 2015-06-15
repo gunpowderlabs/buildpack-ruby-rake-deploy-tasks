@@ -17,5 +17,11 @@ if [ -d "$env_dir" ]; then
   done
 fi
 
-[ -z "$DEPLOY_TASKS" ] && { echo "DEPLOY_TASKS has not been set"; exit 1; }
+if [ -z "$DEPLOY_TASKS" ]; then 
+  echo "DEPLOY_TASKS has not been set"
+  echo "You can set it with:" 
+  echo 'heroku config:set DEPLOY_TASKS="tasks to run"'
+  exit 1 
+fi
+
 cd $build_dir && bundle exec rake $DEPLOY_TASKS
