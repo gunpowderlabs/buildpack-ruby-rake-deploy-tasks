@@ -4,6 +4,12 @@ This buildpack is intended for use after the regular [ruby-buildpack].
 
 # Usage
 
+If you are using the default buildpack, manually set your buildpack to Heroku's default Ruby buidlpack
+
+```
+heroku buildpacks:set https://github.com/heroku/heroku-buildpack-ruby
+```
+
 Append the buildpack-ruby-rake-deploy-tasks to your buildpack list:
 
 ```
