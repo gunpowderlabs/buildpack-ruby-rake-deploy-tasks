@@ -24,4 +24,5 @@ if [ -z "$DEPLOY_TASKS" ]; then
   exit 0
 fi
 
+echo "Execute tasks: ${DEPLOY_TASKS_RAKE_COMMAND:-"bundle exec rake"} $DEPLOY_TASKS"
 cd $build_dir && ${DEPLOY_TASKS_RAKE_COMMAND:-"bundle exec rake"} $DEPLOY_TASKS
