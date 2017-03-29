@@ -1,29 +1,15 @@
-# Heroku buildpack for running arbitrary rake tasks on deploy
+## Deprecated
 
-This buildpack is intended for use after the regular [ruby-buildpack].
+This buildpack is deprecated.
 
-# Usage
+If you need to run a task after you build but before you deploy please [use Release phase](https://devcenter.heroku.com/articles/release-phase).
 
-If you are using the default buildpack, manually set your buildpack to Heroku's default Ruby buildpack
+If you need to modify files on disk (which release phase will not do). You can hook into the `assets:precompile` task
 
+```ruby
+# Rakefile
+task "assets:precompile" do
+  Rake::Task["assets:precompile"].invoke
+  # Run your custom code here
+end
 ```
-heroku buildpacks:set https://github.com/heroku/heroku-buildpack-ruby
-```
-
-Append the buildpack-ruby-rake-deploy-tasks to your buildpack list:
-
-```
-heroku buildpacks:add https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks
-```
-
-Configure DEPLOY_TASKS environment variable with the tasks you want to run:
-
-```
-heroku config:set DEPLOY_TASKS='db:migrate cache:clear'
-```
-
-# License
-
-MIT, see the LICENSE file.
-
-[ruby-buildpack]:https://github.com/heroku/heroku-buildpack-ruby
