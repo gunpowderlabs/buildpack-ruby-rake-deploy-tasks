@@ -2,6 +2,10 @@
 
 This buildpack is intended for use after the regular [ruby-buildpack].
 
+# UPDATE
+
+Heroku's [Release Phase](https://devcenter.heroku.com/articles/release-phase) (in beta) is their own replacement for this. This project will be deprecated once Release Phase is out of beta and supports all of the use cases (like running migrations).
+
 # Usage
 
 If you are using the default buildpack, manually set your buildpack to Heroku's default Ruby buildpack
